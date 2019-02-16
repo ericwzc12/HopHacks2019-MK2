@@ -5,4 +5,5 @@
     </string>
     <string name="title_activity_login">LoginActivity</string>
     <string name="title_activity_login_again">LoginActivityAgain</string>
+    <string name="textview">TextView</string>
 </resources>
