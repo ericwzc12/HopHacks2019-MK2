@@ -221,4 +221,10 @@ public class MainActivity extends AppCompatActivity{
             super(e);
         }
     }
+
+    @Override
+    protected void onStop(){
+        super.onStop();
+        finish();
+    }
 }

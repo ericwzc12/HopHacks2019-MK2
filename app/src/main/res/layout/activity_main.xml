@@ -40,6 +40,6 @@
         android:id="@+id/textView2"
         android:text="@string/instructions"
         android:layout_below="@+id/imageView"
-        android:layout_alignParentStart="true"
+        android:layout_centerHorizontal="true"
         android:layout_marginTop="27dp" />
 </RelativeLayout>
