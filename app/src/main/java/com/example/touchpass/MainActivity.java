@@ -53,6 +53,7 @@ public class MainActivity extends AppCompatActivity{
     private FingerprintManager.CryptoObject cryptoObject;
     private FingerprintManager fingerprintManager;
     private KeyguardManager keyguardManager;
+    private String padString = "52fc968a5bb2e5150f0183bcadc463d7550fb24dc448b03326bccca568b390a1";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -63,6 +64,8 @@ public class MainActivity extends AppCompatActivity{
         String sha256hex = Hashing.sha256()
                 .hashString(originalString, StandardCharsets.UTF_8)
                 .toString();
+        Log.d("Original Hex: ", sha256hex);
+        sha256hex = pad(sha256hex);
         Log.d("Original string: ", originalString);
 
         // If you’ve set your app’s minSdkVersion to anything lower than 23, then you’ll need to verify that the device is running Marshmallow
@@ -226,5 +229,17 @@ public class MainActivity extends AppCompatActivity{
     protected void onStop(){
         super.onStop();
         finish();
+    }
+
+    private String pad(String input){
+        char[] inputArray = input.toCharArray(), padArray = padString.toCharArray();
+        int temp;
+        for(int i = 0; i < inputArray.length; i++){
+            temp = Integer.parseInt(String.valueOf(inputArray[i]), 16) + Integer.parseInt(String.valueOf(padArray[i]), 16);
+            inputArray[i] = Integer.toHexString(temp%16).charAt(0);
+        }
+
+        Log.d("Original Hex: ", String.valueOf(inputArray));
+        return String.valueOf(inputArray);
     }
 }
