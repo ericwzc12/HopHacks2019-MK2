@@ -64,7 +64,6 @@ public class MainActivity extends AppCompatActivity{
                 .hashString(originalString, StandardCharsets.UTF_8)
                 .toString();
         sha256hex = pad(sha256hex);
-
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
             keyguardManager =
                     (KeyguardManager) getSystemService(KEYGUARD_SERVICE);
