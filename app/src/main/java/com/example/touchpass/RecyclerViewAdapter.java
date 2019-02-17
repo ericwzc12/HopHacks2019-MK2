@@ -4,18 +4,13 @@ import android.app.AlertDialog;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.support.annotation.NonNull;
-import android.support.design.widget.Snackbar;
 import android.support.v7.widget.CardView;
 import android.support.v7.widget.RecyclerView;
-import android.text.InputType;
-import android.text.Layout;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.EditText;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import com.android.volley.Request;
 import com.android.volley.RequestQueue;
@@ -23,16 +18,12 @@ import com.android.volley.Response;
 import com.android.volley.VolleyError;
 import com.android.volley.toolbox.StringRequest;
 import com.android.volley.toolbox.Volley;
-
-import org.w3c.dom.Text;
-
-import java.lang.reflect.Array;
 import java.util.ArrayList;
 
 public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerViewAdapter.ViewHolder> {
 
-    private ArrayList<String> mUrlText = new ArrayList<>();
-    private ArrayList<String> mUsername = new ArrayList<>();
+    private ArrayList<String> mUrlText;
+    private ArrayList<String> mUsername;
     private Context mContext;
     private String sha256hex;
     private final String server_url = "http://35.188.254.68:8080";
@@ -60,13 +51,11 @@ public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerViewAdapte
          viewHolder.parentLayout.setOnClickListener(new View.OnClickListener() {
              @Override
              public void onClick(View v) {
-                 Log.d("Clicked: ", "clicky clicky");
                  final RequestQueue requestQueue = Volley.newRequestQueue(mContext);
                  StringRequest stringRequest = new StringRequest(Request.Method.GET, server_url + "/send?username=" + mUsername.get(index) + "&master=" + sha256hex, new Response.Listener<String>() {
 
                      @Override
                      public void onResponse(String response) {
-                         Log.d("Got response ", "yay");
                          pushSuccess();
                          requestQueue.stop();
                      }

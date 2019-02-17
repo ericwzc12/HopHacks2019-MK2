@@ -103,7 +103,6 @@ public class LoginActivity extends AppCompatActivity {
                                         printstream.print(userIn+"\n");
                                         fileinput.close();
                                         initLists();
-                                        Log.d("ye ", "et");
                                     }
 
                                 } catch (Exception e) {
@@ -173,7 +172,6 @@ public class LoginActivity extends AppCompatActivity {
     }
 
     private void initRecyclerView(){
-        Log.d("Hi ", "initializing");
         RecyclerView recyclerView = findViewById(R.id.recycler_view);
         RecyclerViewAdapter adapter = new RecyclerViewAdapter(this, mURLs, mUsernames, hash);
         recyclerView.setAdapter(adapter);
@@ -190,7 +188,7 @@ public class LoginActivity extends AppCompatActivity {
             }
 
         } catch (Exception e) {
-            Log.d("wah wah", "rip");
+            e.printStackTrace();
         }
     }
 
